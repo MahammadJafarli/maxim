@@ -9,4 +9,7 @@ use App\Http\Requests;
 class AdminController extends Controller
 {
     //
+    public function admin(){
+        return view('admin.admin');
+    }
 }

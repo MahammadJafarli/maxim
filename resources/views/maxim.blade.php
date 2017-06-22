@@ -95,68 +95,45 @@
 <!-- section: team -->
 <section id="about" class="section">
     <div class="container">
-        <h4>Who We Are</h4>
+        <h4>
+
+                {{ $about[0]->about_title }}
+
+        </h4>
+
         <div class="row">
             <div class="span4 offset1">
                 <div>
-                    <h2>We live with <strong>creativity</strong></h2>
+                    <h2>
+
+                            {{ $about[0]->about_title }}
+
+                    </h2>
                     <p>
-                        Li Europan lingues es membres del sam familie. Lor separat existentie es un myth. Por scientie, musica, sport etc, litot Europa usa li sam vocabular. Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules. Omnicos directe al desirabilite de un nov lingua franca: On refusa continuar payar custosi traductores.
+
+                            {{ $about[0]->about_text }}
+
                     </p>
                 </div>
             </div>
             <div class="span6">
                 <div class="aligncenter">
-                    <img src="img/icons/creativity.png" alt="" />
+                    <img src="{{ '/images/'.$about[0]->about_image }}" alt="" />
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="span2 offset1 flyIn">
-                <div class="people">
-                    <img class="team-thumb img-circle" src="img/team/img-1.jpg" alt="" />
-                    <h3>John Doe</h3>
-                    <p>
-                        Art director
-                    </p>
+        <div class="row" style="margin-left: 60px">
+            @foreach($team as $team)
+                <div class="span2  flyIn">
+                    <div class="people">
+                        <img class="team-thumb img-circle" src="{{ '/images/'.$team->avatar }}" alt="" />
+                        <h3>{{ $team->name }} {{ $team->surname }}</h3>
+                        <p>
+                            {{ $team->position->position_name }}
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="span2 flyIn">
-                <div class="people">
-                    <img class="team-thumb img-circle" src="img/team/img-2.jpg" alt="" />
-                    <h3>Mike Doe</h3>
-                    <p>
-                        Web developer
-                    </p>
-                </div>
-            </div>
-            <div class="span2 flyIn">
-                <div class="people">
-                    <img class="team-thumb img-circle" src="img/team/img-3.jpg" alt="" />
-                    <h3>Neil Doe</h3>
-                    <p>
-                        Web designer
-                    </p>
-                </div>
-            </div>
-            <div class="span2 flyIn">
-                <div class="people">
-                    <img class="team-thumb img-circle" src="img/team/img-4.jpg" alt="" />
-                    <h3>Mark Joe</h3>
-                    <p>
-                        UI designer
-                    </p>
-                </div>
-            </div>
-            <div class="span2 flyIn">
-                <div class="people">
-                    <img class="team-thumb img-circle" src="img/team/img-5.jpg" alt="" />
-                    <h3>Stephen B</h3>
-                    <p>
-                        Digital imaging
-                    </p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     <!-- /.container -->
@@ -168,42 +145,17 @@
         <h4>Services</h4>
         <!-- Four columns -->
         <div class="row">
-            <div class="span3 animated-fast flyIn">
-                <div class="service-box">
-                    <img src="img/icons/laptop.png" alt="" />
-                    <h2>Web design</h2>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </p>
+            @foreach($service as $service)
+                <div class="span3 animated-fast flyIn">
+                    <div class="service-box">
+                        <img src="{{ '/images/'.$service->service_image }}" alt="" />
+                        <h2>{{ $service->service_title }}</h2>
+                        <p>
+                            {{ $service->service_description }}
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="span3 animated flyIn">
-                <div class="service-box">
-                    <img src="img/icons/lab.png" alt="" />
-                    <h2>Web development</h2>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </p>
-                </div>
-            </div>
-            <div class="span3 animated-fast flyIn">
-                <div class="service-box">
-                    <img src="img/icons/camera.png" alt="" />
-                    <h2>Photography</h2>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </p>
-                </div>
-            </div>
-            <div class="span3 animated-slow flyIn">
-                <div class="service-box">
-                    <img src="img/icons/basket.png" alt="" />
-                    <h2>Ecommerce</h2>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    </p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>
@@ -238,156 +190,23 @@
         <div class="row">
             <div class="span12">
                 <div id="portfolio-wrap">
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid print photography">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/1.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
+                    @foreach($portfolio as $portfolio)
+                        <!-- portfolio item -->
+                            <div class="portfolio-item grid print photography">
+                                <div class="portfolio">
+                                    <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
+                                        <img src="{{'/images/'.$portfolio->image}}" alt="" />
+                                        <div class="portfolio-overlay">
+                                            <div class="thumb-info">
+                                                <h5>{{ $portfolio->name }}</h5>
+                                                <i class="icon-plus icon-2x"></i>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid print design web">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/2.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid print design">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/3.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid photography web">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/4.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid photography web">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/5.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid photography web">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/6.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid photography web">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/7.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid photography">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/8.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid photography web">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/9.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
-                    <!-- portfolio item -->
-                    <div class="portfolio-item grid design web">
-                        <div class="portfolio">
-                            <a href="img/works/big.jpg" data-pretty="prettyPhoto[gallery1]" class="portfolio-image">
-                                <img src="img/works/10.png" alt="" />
-                                <div class="portfolio-overlay">
-                                    <div class="thumb-info">
-                                        <h5>Portfolio name</h5>
-                                        <i class="icon-plus icon-2x"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
+                            </div>
+                            <!-- end portfolio item -->
+                     @endforeach
                 </div>
             </div>
         </div>
@@ -415,82 +234,27 @@
         <h4>Our Blog</h4>
         <!-- Three columns -->
         <div class="row">
-            <div class="span3">
-                <div class="home-post">
-                    <div class="post-image">
-                        <img class="max-img" src="img/blog/img1.jpg" alt="" />
-                    </div>
-                    <div class="post-meta">
-                        <i class="icon-file icon-2x"></i>
-                        <span class="date">June 19, 2013</span>
-                        <span class="tags"><a href="#">Design</a>, <a href="#">Blog</a></span>
-                    </div>
-                    <div class="entry-content">
-                        <h5><strong><a href="#">New design trends</a></strong></h5>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. &hellip;
-                        </p>
-                        <a href="#" class="more">Read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="span3">
-                <div class="home-post">
-                    <div class="post-image">
-                        <img class="max-img" src="img/blog/img2.jpg" alt="" />
-                    </div>
-                    <div class="post-meta">
-                        <i class="icon-file icon-2x"></i>
-                        <span class="date">June 19, 2013</span>
-                        <span class="tags"><a href="#">Design</a>, <a href="#">News</a></span>
-                    </div>
-                    <div class="entry-content">
-                        <h5><strong><a href="#">Retro is great</a></strong></h5>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. &hellip;
-                        </p>
-                        <a href="#" class="more">Read more</a>
+            @foreach($blog as $blog)
+                <div class="span3">
+                    <div class="home-post">
+                        <div class="post-image">
+                            <img class="max-img" src="{{ '/images/'.$blog->post_image }}" alt="" />
+                        </div>
+                        <div class="post-meta">
+                            <i class="icon-file icon-2x"></i>
+                            <span class="date">{{ $blog->created_at->format('d m Y ') }}</span>
+                            <span class="tags"><a href="#">{{ $blog->category_id }}</a></span>
+                        </div>
+                        <div class="entry-content">
+                            <h5><strong><a href="#">{{ $blog->post_title }}</a></strong></h5>
+                            <p>
+                                {{ substr(($blog->post_text),0,150) }} &hellip;
+                            </p>
+                            <a href="singleBlog/{{$blog->id}}" class="more">Read more</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="span3">
-                <div class="home-post">
-                    <div class="post-image">
-                        <img class="max-img" src="img/blog/img3.jpg" alt="" />
-                    </div>
-                    <div class="post-meta">
-                        <i class="icon-file icon-2x"></i>
-                        <span class="date">June 22, 2013</span>
-                        <span class="tags"><a href="#">Design</a>, <a href="#">Tips</a></span>
-                    </div>
-                    <div class="entry-content">
-                        <h5><strong><a href="#">Isometric mockup</a></strong></h5>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. &hellip;
-                        </p>
-                        <a href="#" class="more">Read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="span3">
-                <div class="home-post">
-                    <div class="post-image">
-                        <img class="max-img" src="img/blog/img4.jpg" alt="" />
-                    </div>
-                    <div class="post-meta">
-                        <i class="icon-file icon-2x"></i>
-                        <span class="date">June 27, 2013</span>
-                        <span class="tags"><a href="#">News</a>, <a href="#">Tutorial</a></span>
-                    </div>
-                    <div class="entry-content">
-                        <h5><strong><a href="#">Free icon set</a></strong></h5>
-                        <p>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. &hellip;
-                        </p>
-                        <a href="#" class="more">Read more</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="blankdivider30"></div>
         <div class="aligncenter">
@@ -514,7 +278,7 @@
                 <div class="cform" id="contact-form">
                     <div id="sendmessage">Your message has been sent. Thank you!</div>
                     <div id="errormessage"></div>
-                    <form action="" method="post" role="form" class="contactForm">
+                    <form method="post" action="/send_email" role="form" class="contactForm">
                         <div class="row">
                             <div class="span6">
                                 <div class="field your-name form-group">
@@ -532,7 +296,7 @@
                             </div>
                             <div class="span6">
                                 <div class="field message form-group">
-                                    <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                                    <textarea class="form-control" name="message" id="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
                                     <div class="validation"></div>
                                 </div>
                                 <input type="submit" value="Send message" class="btn btn-theme pull-left">
@@ -586,6 +350,5 @@
 <script src="js/validate.js"></script>
 <script src="js/custom.js"></script>
 <script src="contactform/contactform.js"></script>
-
 </body>
 </html>

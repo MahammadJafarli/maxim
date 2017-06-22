@@ -18,7 +18,11 @@ class CreatePostsTable extends Migration
             $table->char('post_title');
             $table->string('post_text');
             $table->string('post_image');
+            $table->integer('category_id');
             $table->timestamps();
+
+
+            $table->foreign('category_id')->references('id')->on('category');
         });
     }
 
